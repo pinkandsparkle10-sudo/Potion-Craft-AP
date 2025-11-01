@@ -1,6 +1,7 @@
 from typing import ClassVar, Dict
 
 from BaseClasses import Tutorial, ItemClassification
+from Utils import visualize_regions
 from worlds.AutoWorld import WebWorld, World
 from worlds.potion_craft.Items import PotionCraftItem, create_potion_craft_items
 from worlds.potion_craft.Locations import create_potion_craft_locations
@@ -56,3 +57,9 @@ class PotionCraftWorld(World):
         return {
             "ModVersion": "0.6.0"
         }
+
+    def generate_output(self, output_directory: str):
+        visualize_regions(self.multiworld.get_region("Menu", self.player), f"Player{self.player}.puml",
+                          show_entrance_names=True,
+                          regions_to_highlight=self.multiworld.get_all_state(self.player).reachable_regions[
+                              self.player])
