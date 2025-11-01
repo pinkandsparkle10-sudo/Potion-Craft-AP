@@ -35,7 +35,7 @@ def create_item(world, name: str, classification: ItemClassification, amount: Op
 
 
 def create_potion_craft_items(world):
-    total_location_count = len(world.multiworld.get_unfilled_locations(world.player))
+    total_location_count = len(world.multiworld.get_unfilled_locations(world.player)) #adds items to world.item pool
 
     print(len(world.itempool))
 
@@ -117,4 +117,4 @@ junk_weights = {
     "Bulk North Ingredient Bundle": 20
 }
 
-full_item_dict: Dict[str, ItemData] = {**ingredients, **skills, **keyitems, **junk_items}
+full_item_dict: Dict[str, ItemData] = {**ingredients, **skills, **keyitems, **junk_items} #full item dictionary

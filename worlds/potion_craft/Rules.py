@@ -35,5 +35,5 @@ def set_rules(world):
 
     #Set our goal to be at completing the "Chapter 3" Location
     world.multiworld.get_location(f"Chapter 3", world.player).place_locked_item(
-        PotionCraftItem("Victory", ItemClassification.progression, None, world.player))
-    world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
+        PotionCraftItem("Victory", ItemClassification.progression, None, world.player)) #victory gives event
+    world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player) #need victory to beat world

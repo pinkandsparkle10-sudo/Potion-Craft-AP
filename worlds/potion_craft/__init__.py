@@ -2,10 +2,11 @@ from typing import ClassVar, Dict
 
 from BaseClasses import Tutorial, ItemClassification
 from worlds.AutoWorld import WebWorld, World
-from worlds.potion_craft.Items import PotionCraftItem, create_potion_craft_items
+from worlds.potion_craft.Items import PotionCraftItem, create_potion_craft_items, full_item_dict
 from worlds.potion_craft.Locations import create_potion_craft_locations
 from worlds.potion_craft.Options import potion_craft_option_groups, PotionCraftOptions
 from worlds.potion_craft.Regions import create_potion_craft_regions, connect_potion_craft_regions
+from worlds.potion_craft.Rules import set_rules
 
 
 class PotionCraftWeb(WebWorld):
@@ -31,8 +32,8 @@ class PotionCraftWorld(World):
     options_dataclass = PotionCraftOptions
     options: PotionCraftOptions
     option_groups = potion_craft_option_groups
-    item_name_to_id: ClassVar[Dict[str, int]] = {item_name: item_data.code for item_name, item_data in full_item_dict.items()}
-    location_name_to_id: ClassVar[Dict[str, int]] = {loc_name: loc_data.code for loc_name, loc_data in full_location_dict.items()}
+    item_name_to_id: ClassVar[Dict[str, int]] = {item_name: item_data.code for item_name, item_data in full_item_dict.items()} #needs list of all possible items
+    location_name_to_id: ClassVar[Dict[str, int]] = {loc_name: loc_data.code for loc_name, loc_data in full_location_dict.items()} #needs list of all possible locations
 
     def __init__(self, multiworld, player):
         super().__init__(multiworld, player)
@@ -51,6 +52,9 @@ class PotionCraftWorld(World):
 
     def create_items(self):
         create_potion_craft_items(self)
+
+    def set_rules(self):
+        set_rules(self)
 
     def fill_slot_data(self) -> id:
         return {
