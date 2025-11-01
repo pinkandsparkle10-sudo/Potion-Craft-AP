@@ -11,8 +11,13 @@ class LocData(NamedTuple):
     region: Optional[str]
     id: Optional[int] = -1
 
+def create_potion_craft_locations(world):
+    print("Create a Dict[str, LocData] and return it here!")
 
+Chapter1_dict: Dict[str, LocData] = {
+    "Refinery Run": LocData(0x6d000007, "SR - Refinery Run", 7),
+}
 
-race_dict: Dict[str, LocData] = {
+first_potion_brew_dict: Dict[str, LocData] = {
     "Refinery Run": LocData(0x6d000007, "SR - Refinery Run", 7),
 }
