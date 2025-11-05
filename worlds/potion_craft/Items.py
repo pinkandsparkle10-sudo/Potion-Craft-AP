@@ -54,7 +54,7 @@ ingredients: Dict[str, ItemData] = {
     "Lifeleaf" : ItemData(5, ItemClassification.progression, 1, [Direction.EAST, Direction.SOUTH]),
     "Firebell" : ItemData(6, ItemClassification.progression, 1, [Direction.WEST]),
     "Thunder Thistle" : ItemData(7, ItemClassification.progression, 2, [Direction.WEST, Direction.SOUTH]),
-    "Icefruit" : ItemData(8, ItemClassification.progression, 2, [Direction.NORTH, Direction.SOUTH, Direction.EAST]),
+    "Icefruit" : ItemData(8, ItemClassification.useful, 2, [Direction.NORTH, Direction.SOUTH, Direction.EAST]),
     "Hairy Banana" : ItemData(9, ItemClassification.progression, 2, [Direction.SOUTH, Direction.WEST]),
     "Goodberry" : ItemData(10, ItemClassification.progression, 2, [Direction.EAST, Direction.SOUTH]),
     "Goldthorn" : ItemData(11, ItemClassification.progression, 2, [Direction.SOUTH, Direction.EAST]),
@@ -71,9 +71,9 @@ ingredients: Dict[str, ItemData] = {
     "Spellbloom" : ItemData(22, ItemClassification.progression, 5, [Direction.NORTH, Direction.EAST]),
     "Healer's Heather" : ItemData(23, ItemClassification.progression, 5, [Direction.SOUTH, Direction.EAST]),
     "Fluffbloom" : ItemData(24, ItemClassification.progression, 5, [Direction.NORTH, Direction.EAST]),
-    "Dragon Pepper" : ItemData(25, ItemClassification.progression, 5, [Direction.SOUTH, Direction.WEST, Direction.NORTH]),
+    "Dragon Pepper" : ItemData(25, ItemClassification.useful, 5, [Direction.SOUTH, Direction.WEST, Direction.NORTH]),
     "Boombloom" : ItemData(26, ItemClassification.progression, 5, [Direction.NORTH, Direction.WEST]),
-    "Terror Bud" : ItemData(27, ItemClassification.progression, 6, [Direction.SOUTH, Direction.WEST, Direction.NORTH]),
+    "Terror Bud" : ItemData(27, ItemClassification.useful, 6, [Direction.SOUTH, Direction.WEST, Direction.NORTH]),
     "Mageberry" : ItemData(28, ItemClassification.progression, 6, [Direction.EAST, Direction.NORTH]),
     "Evergreen Fern" : ItemData(29, ItemClassification.progression, 6, [Direction.EAST, Direction.SOUTH]), #Herb End
     "Dryad's Saddle" : ItemData(30, ItemClassification.progression, 1, [Direction.SOUTH]), #Mushroom Start
@@ -88,14 +88,14 @@ ingredients: Dict[str, ItemData] = {
     "Foggy Parasol" : ItemData(39, ItemClassification.progression, 3, [Direction.NORTH]),
     "Goblin Shroom" : ItemData(40, ItemClassification.progression, 3, [Direction.SOUTH, Direction.WEST]),
     "Moss Shroom" : ItemData(41, ItemClassification.progression, 3, [Direction.SOUTH, Direction.EAST]),
-    "Phantom Skirt" : ItemData(42, ItemClassification.progression, 4, [Direction.NORTH, Direction.EAST, Direction.WEST]), #TODO might edit later
+    "Phantom Skirt" : ItemData(42, ItemClassification.useful, 4, [Direction.NORTH, Direction.EAST, Direction.WEST]), #TODO might edit later
     "Poopshroom" : ItemData(43, ItemClassification.progression, 4, [Direction.SOUTH]),
     "Watercap" : ItemData(44, ItemClassification.progression, 4, [Direction.EAST]),
     "Kraken Mushroom" : ItemData(45, ItemClassification.progression, 5, [Direction.EAST]),
     "Lust Mushroom" : ItemData(46, ItemClassification.progression, 5, [Direction.SOUTH]),
     "Magma Morel" : ItemData(47, ItemClassification.progression, 5, [Direction.EAST]),
-    "Grave Truffle" : ItemData(48, ItemClassification.progression, 6, [Direction.SOUTH, Direction.WEST]), #TODO might edit later
-    "Rainbow Cap" : ItemData(49, ItemClassification.progression, 6, [Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST]),  #Mushroom END #TODO might remove west
+    "Grave Truffle" : ItemData(48, ItemClassification.useful, 6, [Direction.SOUTH, Direction.WEST]), #TODO might edit later
+    "Rainbow Cap" : ItemData(49, ItemClassification.useful, 6, [Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST]),  #Mushroom END #TODO might remove west
     "Cloud Crystal" : ItemData(50, ItemClassification.progression, 2, [Direction.NORTH]), #Mineral Start
     "Earth Pyrite" : ItemData(51, ItemClassification.progression, 2, [Direction.SOUTH]),
     "Frost Sapphire" : ItemData(52, ItemClassification.progression, 2, [Direction.EAST]),
@@ -104,9 +104,43 @@ ingredients: Dict[str, ItemData] = {
     "Arcane Crystal" : ItemData(55, ItemClassification.progression, 4, [Direction.NORTH, Direction.EAST]),
     "Life Crystal" : ItemData(56, ItemClassification.progression, 5, [Direction.SOUTH, Direction.EAST]),
     "Plague Stibnite" : ItemData(57, ItemClassification.progression, 6, [Direction.SOUTH, Direction.WEST]),
-    "Fable Bismuth" : ItemData(58, ItemClassification.progression, 7, [Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST]), #Mineral END
+    "Fable Bismuth" : ItemData(58, ItemClassification.useful, 7, [Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST]), #Mineral END
     #TODO maybe add salts?
 
+}
+potion_effects: Dict[str, ItemData] = {
+    #Chapters are the chapters the potions are needed to beat, not how early you can get them <------
+    "Healing" : ItemData(59, ItemClassification.progression, 1, None), #Needs South East
+    "Frost" : ItemData(60, ItemClassification.progression, 1, None), #Needs East
+    "Poison" : ItemData(61, ItemClassification.progression, 1, None), #Needs South West
+    "Fire" : ItemData(62, ItemClassification.progression, 1, None), #Needs West (You don't need north to beat chapter 1)
+    "Explosion" : ItemData(63, ItemClassification.progression, 2, None), #Needs North West
+    "Wild Growth" : ItemData(64, ItemClassification.progression, 2, None), #Needs South East
+    "Strength" : ItemData(65, ItemClassification.progression, 2, None), # Needs South
+    "Dexterity" : ItemData(66, ItemClassification.progression, 2, None), #Needs East and South
+    "Swiftness" : ItemData(67, ItemClassification.progression, 2, None), #Needs North
+    "Lightning" : ItemData(68, ItemClassification.progression, 3, None), #Mainly South, slightly east
+    "Mana" : ItemData(69, ItemClassification.progression, 3, None), #South East
+    "Stone Skin": ItemData(70, ItemClassification.progression, 3, None), #South West and East OR a south crystal
+    "Sleep" : ItemData(71, ItemClassification.progression, 3, None), #Needs East, can take a South or a North
+    "Light" : ItemData(72, ItemClassification.progression, 3, None), #West
+    "Charm" : ItemData(73, ItemClassification.progression, 4, None), #Mainly North, need someway west
+    "Slowness" : ItemData(74, ItemClassification.progression, 4, None), #South and West, No need for east because water
+    "Rage" : ItemData(75, ItemClassification.progression, 4, None), #North and East
+    "Magical Vision" : ItemData(76, ItemClassification.progression, 4, None), #North and East
+    "Acid" : ItemData(77, ItemClassification.progression, 5, None), #Mainly West, Still needs South
+    "Libido" : ItemData(78, ItemClassification.progression, 5, None), #Needs North West,
+    "Invisibility" : ItemData(79, ItemClassification.progression, 5, None), #Needs North and East
+    "Levitation" : ItemData(80,ItemClassification.progression, 5, None), #Needs North, can use West and East OR a North Crystal
+    "Necromancy" : ItemData(81, ItemClassification.progression, 5, None), #South West, Recommend crystal Or East
+    "Poison Protection": ItemData(82, ItemClassification.progression, 6, None), #Needs All directions (should have by chapter 6 anyway)
+    "Lightning Protection" : ItemData(83, ItemClassification.progression, 6, None), #All Directions OR South with Crystal
+    "Fire Protection" : ItemData(84,ItemClassification.progression, 6, None), #All Directions OR east wth crystals
+    "Frost Protection": ItemData(85, ItemClassification.progression, 6, None), #All Directions Mainly West
+    "Gluing" : ItemData(86, ItemClassification.progression, 6, None), #All Directions
+    "Slipperiness": ItemData(87, ItemClassification.progression, 6, None),
+    "Stench": ItemData(88, ItemClassification.progression, 6, None),
+    #TODO Do chapters 7-9
 }
 
 skills: Dict[str, ItemData] = {
@@ -133,4 +167,4 @@ junk_weights = {
     "Bulk North Ingredient Bundle": 20
 }
 
-full_item_dict: Dict[str, ItemData] = {**ingredients, **skills, **keyitems, **junk_items} #full item dictionary
+full_item_dict: Dict[str, ItemData] = {**ingredients, **skills, **keyitems, **junk_items, **potion_effects} #full item dictionary
