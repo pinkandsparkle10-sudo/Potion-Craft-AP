@@ -1,10 +1,8 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Dict
+from typing import Dict,Optional
 
 from BaseClasses import Item, ItemClassification
-from typings.schema import Optional
-from worlds.ff1.Client import key_items
 
 
 class PotionCraftItem(Item):
@@ -158,10 +156,11 @@ skills: Dict[str, ItemData] = {
 }
 
 key_items: Dict[str, ItemData] = {
-    "progressive alchemy machine" : ItemData(0x0, ItemClassification.useful),
-    "progressive garden" : ItemData(0x0, ItemClassification.useful),
-    "Talent Points" : ItemData(0x0, ItemClassification.filler),
-    "Recipe Pages" : ItemData(0x0, ItemClassification.useful),
+    "Progressive Alchemy Machine" : ItemData(0x0, ItemClassification.useful),
+    "Progressive Garden" : ItemData(0x0, ItemClassification.useful),
+    "Recipe Page" : ItemData(0x0, ItemClassification.useful),
+    "Progressive Salt" : ItemData(0x0, ItemClassification.progression),
+    "Progressive Crystal Recipie" : ItemData(0x0, ItemClassification.progression),
 
 }
 
@@ -170,6 +169,9 @@ junk_items: Dict[str, ItemData] = {
     "Xp": ItemData(0, ItemClassification.filler),
     "Money": ItemData(0, ItemClassification.filler),
     "Bulk North Ingredient Bundle" : ItemData(0x0, ItemClassification.filler),
+    "Bulk East Ingredient Bundle" : ItemData(0x0, ItemClassification.filler),
+    "Bulk South Ingredient Bundle" : ItemData(0x0, ItemClassification.filler),
+    "Bulk West Ingredient Bundle" : ItemData(0x0, ItemClassification.filler),
 }
 
 junk_weights = {
