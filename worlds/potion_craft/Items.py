@@ -4,6 +4,7 @@ from typing import Dict
 
 from BaseClasses import Item, ItemClassification
 from typings.schema import Optional
+from worlds.ff1.Client import key_items
 
 
 class PotionCraftItem(Item):
@@ -140,17 +141,27 @@ potion_effects: Dict[str, ItemData] = {
     "Gluing" : ItemData(86, ItemClassification.progression, 6, None), #All Directions
     "Slipperiness": ItemData(87, ItemClassification.progression, 6, None),
     "Stench": ItemData(88, ItemClassification.progression, 6, None),
-    #TODO Do chapters 7-9
+    "Acid Protection" : ItemData(89, ItemClassification.progression, 7, None),
+    "Anti Magic" : ItemData(90, ItemClassification.progression, 7, None),
+    "Shrinking" : ItemData(91, ItemClassification.progression, 7, None),
+    "Enlargement" : ItemData(92, ItemClassification.progression, 7, None),
+    "Rejuvenation" : ItemData(93, ItemClassification.progression, 7, None),
+    "Inspiration" : ItemData(94, ItemClassification.progression, 8, None),
+    "Fragrance" : ItemData(95, ItemClassification.progression, 8, None),
+    "Fear" : ItemData(96, ItemClassification.progression, 8, None),
+    "Hallucinations" : ItemData(97, ItemClassification.progression, 9, None),
+    "Luck" : ItemData(98, ItemClassification.progression, 9, None),
+    "Curse" : ItemData(99, ItemClassification.progression, 9, None),
 }
 
 skills: Dict[str, ItemData] = {
 }
 
-keyitems: Dict[str, ItemData] = {
+key_items: Dict[str, ItemData] = {
     "progressive alchemy machine" : ItemData(0x0, ItemClassification.useful),
     "progressive garden" : ItemData(0x0, ItemClassification.useful),
     "Talent Points" : ItemData(0x0, ItemClassification.filler),
-"Recipe Pages" : ItemData(0x0, ItemClassification.useful),
+    "Recipe Pages" : ItemData(0x0, ItemClassification.useful),
 
 }
 
@@ -167,4 +178,4 @@ junk_weights = {
     "Bulk North Ingredient Bundle": 20
 }
 
-full_item_dict: Dict[str, ItemData] = {**ingredients, **skills, **keyitems, **junk_items, **potion_effects} #full item dictionary
+full_item_dict: Dict[str, ItemData] = {**ingredients, **skills, **key_items, **junk_items, **potion_effects} #full item dictionary
