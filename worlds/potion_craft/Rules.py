@@ -2,11 +2,12 @@ from BaseClasses import ItemClassification
 from worlds.potion_craft.Items import PotionCraftItem
 
 
+
 def get_rules(world):
     rules = {
         "locations": {
-            "Alchemy Wizard Shop Check1": lambda state: #example Location rule on a location name
-                state.has("Alchemy Wizard Summon", world.player) and state.has("Waterbloom", world.player), #THIS IS AN ITEM NAME
+            "Healing": lambda state: #example Location rule on a location name
+                state.has("Healing", world.player) and state.has_group("east", world.player),
         },
         "entrances": {
             "Start": lambda state: #Example entrance rule on an entrance name
@@ -34,6 +35,6 @@ def set_rules(world):
             pass
 
     #Set our goal to be at completing the "Chapter 3" Location
-    world.multiworld.get_location(f"Chapter 3", world.player).place_locked_item(
+    world.multiworld.get_location(f"Grind an Ingredient", world.player).place_locked_item(
         PotionCraftItem("Victory", ItemClassification.progression, None, world.player)) #victory gives event
     world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player) #need victory to beat world

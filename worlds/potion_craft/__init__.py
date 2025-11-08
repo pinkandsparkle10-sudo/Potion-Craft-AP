@@ -3,7 +3,8 @@ from typing import ClassVar, Dict
 from BaseClasses import Tutorial, ItemClassification
 from Utils import visualize_regions
 from worlds.AutoWorld import WebWorld, World
-from worlds.potion_craft.Items import PotionCraftItem, create_potion_craft_items, full_item_dict
+from worlds.potion_craft.Items import PotionCraftItem, create_potion_craft_items, full_item_dict, Direction, \
+    get_ingredients_by_direction
 from worlds.potion_craft.Locations import create_potion_craft_locations, get_all_potion_craft_locations
 from worlds.potion_craft.Options import potion_craft_option_groups, PotionCraftOptions
 from worlds.potion_craft.Regions import create_potion_craft_regions, connect_potion_craft_regions
@@ -35,6 +36,13 @@ class PotionCraftWorld(World):
     option_groups = potion_craft_option_groups
     item_name_to_id: ClassVar[Dict[str, int]] = {item_name: item_data.code for item_name, item_data in full_item_dict.items()} #needs list of all possible items
     location_name_to_id: ClassVar[Dict[str, int]] = {loc_name: loc_data.code for loc_name, loc_data in get_all_potion_craft_locations().items()} #needs list of all possible locations
+
+    item_name_groups = {
+        "north": set(get_ingredients_by_direction(Direction.NORTH)),
+        "south": set(get_ingredients_by_direction(Direction.SOUTH)),
+        "east": set(get_ingredients_by_direction(Direction.EAST)),
+        "west": set(get_ingredients_by_direction(Direction.WEST)),
+    }
 
     def __init__(self, multiworld, player):
         super().__init__(multiworld, player)

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Dict,Optional
+from typing import Dict, Optional, List
 
 from BaseClasses import Item, ItemClassification
 
@@ -19,6 +19,12 @@ class ItemData:
     classification: ItemClassification
     chapter: int = 0
     direction: list[Direction] | None = None
+    amount: Optional[int] = 1
+
+@dataclass
+class TalentData:
+    code: int
+    classification: ItemClassification
     amount: Optional[int] = 1
 
 def get_junk_item_names(rand, k: int) -> str:
@@ -44,6 +50,14 @@ def create_potion_craft_items(world):
     for name in junk:
         create_item(world, name, ItemClassification.filler)
     world.multiworld.itempool += world.itempool
+
+def get_ingredients_by_direction(direction: Direction) -> List[str]:
+
+    return [
+        key
+        for key, value in ingredients.items()
+        if value.direction is not None and direction in value.direction
+    ]
 
 ingredients: Dict[str, ItemData] = {
     "Windbloom" : ItemData(1, ItemClassification.progression, 1,[Direction.NORTH]), #Herb start
@@ -107,6 +121,7 @@ ingredients: Dict[str, ItemData] = {
     #TODO maybe add salts?
 
 }
+
 potion_effects: Dict[str, ItemData] = {
     #Chapters are the chapters the potions are needed to beat, not how early you can get them <------
     "Healing" : ItemData(59, ItemClassification.progression, 1, None), #Needs South East
@@ -152,26 +167,47 @@ potion_effects: Dict[str, ItemData] = {
     "Curse" : ItemData(99, ItemClassification.progression, 9, None),
 }
 
-skills: Dict[str, ItemData] = {
+talents: Dict[str, TalentData] = {
+    "Trading" : TalentData(100, ItemClassification.useful), #trading start
+    "Irrepressible Seller" : TalentData(101, ItemClassification.useful),
+    "Charisma" : TalentData(102, ItemClassification.useful),
+    "Great Potion Demand" : TalentData(103, ItemClassification.useful),
+    "Advertising Master" : TalentData(104, ItemClassification.useful),
+    "Perfect Haggling" : TalentData(105, ItemClassification.useful),
+    "Haggling over complex topics" : TalentData(106, ItemClassification.useful),
+    "Haggling over extremely complex topics" : TalentData(107, ItemClassification.useful),
+    "Unhurried Haggling" : TalentData(108, ItemClassification.useful),
+    "Accommodating Haggling" : TalentData(109, ItemClassification.useful),
+    "Calming Haggling Manner" : TalentData(110, ItemClassification.useful),
+    "Good Potion Seller" : TalentData(111, ItemClassification.useful),
+    "Best Simple Potion Seller": TalentData(112, ItemClassification.useful),
+    "Selling Potions to Merchants" : TalentData(113, ItemClassification.useful),
+    "Friendship with Merchants" : TalentData(114, ItemClassification.useful),
+    "Increased Discount Chance" : TalentData(115, ItemClassification.useful),
+    "Reduced Markup Chance" : TalentData(116, ItemClassification.useful),
+    "Skilled Manipulator" : TalentData(117, ItemClassification.useful),
+    "Talented Potion Seller" : TalentData(118, ItemClassification.useful), #Trading end
+    "Fertilizing Herbs and Mushrooms with Potions": TalentData(119, ItemClassification.useful), #Gardening Start
+
 }
 
 key_items: Dict[str, ItemData] = {
-    "Progressive Alchemy Machine" : ItemData(0x0, ItemClassification.useful),
-    "Progressive Garden" : ItemData(0x0, ItemClassification.useful),
-    "Recipe Page" : ItemData(0x0, ItemClassification.useful),
-    "Progressive Salt" : ItemData(0x0, ItemClassification.progression),
-    "Progressive Crystal Recipie" : ItemData(0x0, ItemClassification.progression),
+    "Progressive Alchemy Machine" : ItemData(500, ItemClassification.useful),
+    "Progressive Garden" : ItemData(501, ItemClassification.useful),
+    "Recipe Page" : ItemData(502, ItemClassification.useful),
+    "Progressive Salt" : ItemData(503, ItemClassification.progression),
+    "Progressive Crystal Recipe" : ItemData(504, ItemClassification.progression),
 
 }
 
 
 junk_items: Dict[str, ItemData] = {
-    "Xp": ItemData(0, ItemClassification.filler),
-    "Money": ItemData(0, ItemClassification.filler),
-    "Bulk North Ingredient Bundle" : ItemData(0x0, ItemClassification.filler),
-    "Bulk East Ingredient Bundle" : ItemData(0x0, ItemClassification.filler),
-    "Bulk South Ingredient Bundle" : ItemData(0x0, ItemClassification.filler),
-    "Bulk West Ingredient Bundle" : ItemData(0x0, ItemClassification.filler),
+    "Xp": ItemData(1000, ItemClassification.filler),
+    "Money": ItemData(1001, ItemClassification.filler),
+    "Bulk North Ingredient Bundle" : ItemData(1002, ItemClassification.filler),
+    "Bulk East Ingredient Bundle" : ItemData(1003, ItemClassification.filler),
+    "Bulk South Ingredient Bundle" : ItemData(1004, ItemClassification.filler),
+    "Bulk West Ingredient Bundle" : ItemData(1005, ItemClassification.filler),
 }
 
 junk_weights = {
@@ -180,4 +216,4 @@ junk_weights = {
     "Bulk North Ingredient Bundle": 20
 }
 
-full_item_dict: Dict[str, ItemData] = {**ingredients, **skills, **key_items, **junk_items, **potion_effects} #full item dictionary
+full_item_dict: Dict[str, any] = {**ingredients, **talents, **key_items, **junk_items, **potion_effects} #full item dictionary

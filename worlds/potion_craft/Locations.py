@@ -35,10 +35,10 @@ def get_all_potion_craft_locations():
 
 Chapter1_dict: Dict[str, LocData] = {
     "Grab an ingredient from Inventory": LocData(1, "Chapter 1 Goals"),
-    "Grind an Ingredient": LocData(2, "Chapter 1 Goals"),
-    "Toss Ingredient in Cauldren": LocData(3, "Chapter 1 Goals"),
-    "Stir Cauldren": LocData(4, "Chapter 1 Goals"),
-    "Heat Cauldren": LocData(5, "Chapter 1 Goals"),
+    "Grind an Ingredient": LocData(None, "Chapter 1 Goals"),
+    "Toss Ingredient in Cauldron": LocData(3, "Chapter 1 Goals"),
+    "Stir Cauldron": LocData(4, "Chapter 1 Goals"),
+    "Heat Cauldron": LocData(5, "Chapter 1 Goals"),
     "Craft a Potion": LocData(6, "Chapter 1 Goals"),
     "Go to Garden": LocData(7, "Chapter 1 Goals"),
     "Gather Ingredients": LocData(8, "Chapter 1 Goals"),
